@@ -33,6 +33,11 @@ serverOn = True
 global nbrCoClient
 nbrCoClient = 0
 
+global chatrooms
+chatrooms = []
+
+global joins
+joins = []
 
 # Function for handling connections. This will be used to create threads
 def clientThread(conn):
@@ -82,3 +87,25 @@ while serverOn:
             continue
 s.close()
 exit()
+
+def joining(chatroomName: str, clientIp: str, port: str, clientName: str) -> str:
+    joins
+
+class Chatroom:
+    chatroomNextId = 1
+
+    def __init__(self, chatroomName):
+        self.chatroomName = chatroomName
+        self.chatroomId = self.chatroomNextId
+        self.chatroomNextId = self.chatroomNextId + 1
+
+class Join:
+    joinNextId = 1
+
+    def __init__(self, conn, clientName, chatroom):
+        self.conn = conn
+        self.clientName = clientName
+        self.chatroom = chatroom
+        self.joinId = self. joinNextId
+        self.joinNextId = self.joinNextId + 1
+
