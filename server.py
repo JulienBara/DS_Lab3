@@ -33,6 +33,7 @@ serverOn = True
 global nbrCoClient
 nbrCoClient = 0
 
+
 # Function for handling connections. This will be used to create threads
 def clientThread(conn):
     conn.settimeout(60.0)

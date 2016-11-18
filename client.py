@@ -11,9 +11,9 @@ else:
 socketClient = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 socketClient.settimeout(60.0)
 
-try :
+try:
     socketClient.connect((host, port))
-except :
+except:
     print 'Connection error'
     sys.exit()
 
