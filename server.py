@@ -57,6 +57,14 @@ def clientThread(conn):
         if not data:
             break
 
+        if data == "KILL_SERVICE\n":
+            serverOn = False
+            print "Shutting down server"
+
+        elif data[:4] == "HELO":
+            text = data[5:]
+            conn.send("HELO " + text + "IP:" + host + "\nPort:" + str(port) + "\nStudentID:" + "16337089" + "\n")
+
         parse(conn, data, host, port)
 
     nbrCoClient -= 1

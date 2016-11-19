@@ -9,15 +9,7 @@ def parse(conn, data, host, port):
 
     lines = data.split("\n")
 
-    if lines[0] == "KILL_SERVICE\n":
-        serverOn = False
-        print "Shutting down server"
-
-    elif lines[0][:4] == "HELO":
-        text = data[5:]
-        conn.send("HELO " + text + "IP:" + host + "\nPort:" + str(port) + "\nStudentID:" + "16337089" + "\n")
-
-    elif lines[0][:15] == "JOIN_CHATROOM: ":
+    if lines[0][:15] == "JOIN_CHATROOM: ":
 
         print "Now in case join_chatroom"
 
