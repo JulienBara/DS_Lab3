@@ -31,7 +31,7 @@ def joining(conn, chatroom_name, client_ip, client_port, client_name, host, port
 def leaving(conn, chatroom_id, join_id, client_name):
     global chatrooms
     global joins
-    print (chatrooms)
+    print (chatrooms[0].chatroom_id)
     print ("'" + chatroom_id + "'")
     chatroom = findOrDefaultChatroomById(chatroom_id, chatrooms)
     print "step 1"
