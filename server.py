@@ -3,7 +3,7 @@ import sys
 
 from thread import *
 
-from parse import parse
+from parse import *
 
 
 accept_timeout = 10.0
