@@ -13,10 +13,6 @@ def joining(conn, chatroom_name, client_ip, client_port, client_name, host, port
     global joins
     chatroom = findOrCreateChatroomByName(chatroom_name, chatrooms)
     join = Join(conn, client_name, chatroom, client_ip, client_port)
-    s = "CHAT:" + str(join.chatroom.chatroom_id) + "\n"   \
-        + "CLIENT_NAME:" + join.client_name + "\n"        \
-        + "MESSAGE:" + join.client_name + " has joined this chatroom.\n"
-    sendingMessageToAllClientsOfChatroom(chatroom, s)
     joins.append(join)
     chatroom.joins.append(join)
     s = "JOINED_CHATROOM:" + join.chatroom.chatroom_name + "\n" \
@@ -25,6 +21,10 @@ def joining(conn, chatroom_name, client_ip, client_port, client_name, host, port
         + "ROOM_REF:" + str(join.chatroom.chatroom_id) + "\n"   \
         + "JOIN_ID:" + str(join.join_id) + "\n"
     sendingMessageToCo(conn, s)
+    s = "CHAT:" + str(join.chatroom.chatroom_id) + "\n"   \
+        + "CLIENT_NAME:" + join.client_name + "\n"        \
+        + "MESSAGE:" + join.client_name + " has joined this chatroom.\n"
+    sendingMessageToAllClientsOfChatroom(chatroom, s)
 
 
 # TODO Opti en requetant d'abord le join puis en testant si bonne chatroom
