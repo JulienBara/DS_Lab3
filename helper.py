@@ -85,12 +85,6 @@ def sendingMessageToCo(conn, message):
 
 def sendingMessageToAllClientsOfChatroom(chatroom, message):
     for join in chatroom.joins:
-        print (join)
-        print (join.client_name)
-        print (join.chatroom)
-        print (join.client_ip)
-        print (join.client_port)
-        print (join.join_next_id)
         sendingMessageToCo(join.conn, message)
 
 
