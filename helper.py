@@ -19,7 +19,7 @@ def joining(conn, chatroom_name, client_ip, client_port, client_name, host, port
         + "SERVER_IP:" + host + "\n"                            \
         + "PORT:" + str(port) + "\n"                            \
         + "ROOM_REF:" + str(join.chatroom.chatroom_id) + "\n"   \
-        + "JOIN_ID:" + str(join.join_id) + "\n\n"
+        + "JOIN_ID:" + str(join.join_id) + "\n"
     sendingMessageToCo(conn, s)
     # No message in the room
     # s = join.client_name + " joined the chatroom.\n\n"
