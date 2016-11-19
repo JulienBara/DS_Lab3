@@ -9,6 +9,8 @@ joins = []
 
 
 def joining(conn, chatroom_name, client_ip, client_port, client_name, host, port):
+    global chatrooms
+    global joins
     chatroom = findOrCreateChatroomByName(chatroom_name, chatrooms)
     join = Join(conn, client_name, chatroom, client_ip, client_port)
     joins.append(join)
@@ -25,7 +27,9 @@ def joining(conn, chatroom_name, client_ip, client_port, client_name, host, port
 
 # TODO Opti en requetant d'abord le join puis en testant si bonne chatroom
 def leaving(conn, chatroom_id, join_id, client_name):
-    chatroom = findOrDefaultChatroomById(chatroom_id)
+    global chatrooms
+    global joins
+    chatroom = findOrDefaultChatroomById(chatroom_id, chatrooms)
     if chatroom is not None:
         join = findOrDefaultJoinById(join_id)
         if join is not None:
@@ -43,6 +47,8 @@ def leaving(conn, chatroom_id, join_id, client_name):
 
 # TODO Opti en requetant d'abord le join puis en testant si bonne chatroom
 def messaging(conn, chatroom_id, join_id, client_name, message):
+    global chatrooms
+    global joins
     chatroom = findOrDefaultChatroomById(chatroom_id, chatrooms)
     if chatroom is not None:
         join = findOrDefaultJoinById(join_id)
@@ -55,6 +61,7 @@ def messaging(conn, chatroom_id, join_id, client_name, message):
 
 
 def disconnect(conn, client_ip, client_port, client_name):
+    global chatrooms
     for chatroom in enumerate(chatrooms):
         join = findOrDefaultJoinByCo(conn, chatroom.join)
         if join is not None:
