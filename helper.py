@@ -62,6 +62,16 @@ def disconnect(conn, client_ip, client_port, client_name):
     conn.close()
 
 
+def error(conn, number):
+    s = "ERROR_CODE: "
+
+    if number == 1:
+        s += "1\n"
+        + "ERROR_DESCRIPTION: No matching command."
+
+    sendingMessageToCo(conn, s)
+         
+
 def sendingMessageToCo(conn, message):
     conn.send(message)
 
@@ -69,4 +79,5 @@ def sendingMessageToCo(conn, message):
 def sendingMessageToAllClientsOfChatroom(chatroom, message):
     for join in enumerate(chatroom.joins):
         sendingMessageToCo(join.conn, message)
+
 
