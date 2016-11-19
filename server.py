@@ -1,6 +1,14 @@
 import socket
 import sys
+
 from thread import *
+
+from parse import parse
+
+
+accept_timeout = 10.0
+socket_timeout = 120.0
+
 
 if len(sys.argv) > 3:
     host = str(sys.argv[1])
@@ -33,15 +41,9 @@ serverOn = True
 global nbrCoClient
 nbrCoClient = 0
 
-global chatrooms
-chatrooms = []
-
-global joins
-joins = []
-
 # Function for handling connections. This will be used to create threads
 def clientThread(conn):
-    conn.settimeout(60.0)
+    conn.settimeout(socket_timeout)
 
     global nbrCoClient
     global serverOn
@@ -63,6 +65,8 @@ def clientThread(conn):
             text = data[5:]
             conn.send("HELO " + text + "IP:" + host + "\nPort:" + str(port) + "\nStudentID:" + "16337089" + "\n")
 
+        parse(conn, data, host, port)
+
     nbrCoClient -= 1
     conn.close()
     exit()
@@ -71,7 +75,7 @@ def clientThread(conn):
 while serverOn:
     if nbrCoAllowed > nbrCoClient:
         # wait to accept a connection - blocking call
-        s.settimeout(10.0)
+        s.settimeout(accept_timeout)
         try:
             conn, addr = s.accept()
             nbrCoClient += 1
@@ -88,24 +92,12 @@ while serverOn:
 s.close()
 exit()
 
-def joining(chatroomName: str, clientIp: str, port: str, clientName: str) -> str:
-    joins
 
-class Chatroom:
-    chatroomNextId = 1
 
-    def __init__(self, chatroomName):
-        self.chatroomName = chatroomName
-        self.chatroomId = self.chatroomNextId
-        self.chatroomNextId = self.chatroomNextId + 1
 
-class Join:
-    joinNextId = 1
 
-    def __init__(self, conn, clientName, chatroom):
-        self.conn = conn
-        self.clientName = clientName
-        self.chatroom = chatroom
-        self.joinId = self. joinNextId
-        self.joinNextId = self.joinNextId + 1
+
+
+
+
 
