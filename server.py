@@ -6,7 +6,7 @@ from thread import *
 from parse import *
 
 
-accept_timeout = 60.0
+accept_timeout = 120.0
 socket_timeout = 120.0
 
 
