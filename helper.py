@@ -82,7 +82,7 @@ def error(conn, number):
 
 def sendingMessageToCo(conn, message):
     conn.send(message)
-    print ("sent : " + message)
+    print ("sent : '" + message + "'")
 
 
 def sendingMessageToAllClientsOfChatroom(chatroom, message):

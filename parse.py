@@ -5,7 +5,6 @@ from helper import *
 def parse(conn, data, host, port):
 
     print "Now in parse"
-    print data
 
     lines = data.split("\n")
 
