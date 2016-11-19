@@ -33,7 +33,7 @@ def leaving(conn, chatroom_id, join_id, client_name):
     global joins
 
     s = "LEFT_CHATROOM:" + chatroom_id + "\n" \
-        + "JOIN_ID:" + join_id + "\n\n"
+        + "JOIN_ID:" + join_id + "\n"
     sendingMessageToCo(conn, s)
 
     chatroom = findOrDefaultChatroomById(int(chatroom_id), chatrooms)
