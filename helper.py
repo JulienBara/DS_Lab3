@@ -13,7 +13,6 @@ def joining(conn, chatroom_name, client_ip, client_port, client_name, host, port
     global joins
     chatroom = findOrCreateChatroomByName(chatroom_name, chatrooms)
     join = Join(conn, client_name, chatroom, client_ip, client_port)
-    print (join.client_name)
     joins.append(join)
     chatroom.joins.append(join)
     s = "JOINED_CHATROOM:" + join.chatroom.chatroom_name + "\n" \
@@ -85,9 +84,6 @@ def sendingMessageToCo(conn, message):
 
 
 def sendingMessageToAllClientsOfChatroom(chatroom, message):
-    print (chatroom.joins)
-    print (chatroom.chatroom_id)
-    print (chatroom.chatroom_name)
     for (i, join) in enumerate(chatroom.joins):
         print (join)
         print (join.client_name)
