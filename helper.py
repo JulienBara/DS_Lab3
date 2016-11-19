@@ -85,6 +85,8 @@ def sendingMessageToCo(conn, message):
 
 def sendingMessageToAllClientsOfChatroom(chatroom, message):
     print (chatroom.joins)
+    print (chatroom.chatroom_id)
+    print (chatroom.chatroom_name)
     for join in enumerate(chatroom.joins):
         print (chatroom.join)
         sendingMessageToCo(join.conn, message)
