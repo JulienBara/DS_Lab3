@@ -50,6 +50,7 @@ def clientThread(conn):
     while serverOn:
 
         try:
+            print "Ready to receive"
             data = conn.recv(4096)
         except:
             print "socket timeout"
