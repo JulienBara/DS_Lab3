@@ -24,7 +24,7 @@ class Chatroom:
 
 def findOrDefaultChatroomByName(chatroom_name, chatrooms):
     for chatroom in chatrooms:
-        if chatroom.client_name == chatroom_name:
+        if chatroom.chatroom_name == chatroom_name:
             return chatroom
     return None
 
