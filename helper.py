@@ -23,7 +23,7 @@ def joining(conn, chatroom_name, client_ip, client_port, client_name, host, port
     sendingMessageToCo(conn, s)
     s = "CHAT:" + str(join.chatroom.chatroom_id) + "\n"   \
         + "CLIENT_NAME:" + join.client_name + "\n"        \
-        + "MESSAGE:" + join.client_name + " joined the chatroom.\n"
+        + "MESSAGE:" + join.client_name + "has joined this chatroom.\n"
     sendingMessageToAllClientsOfChatroom(chatroom, s)
 
 
