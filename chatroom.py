@@ -37,7 +37,7 @@ def findOrDefaultChatroomById(chatroom_id, chatrooms):
 
 
 def findOrCreateChatroomByName(chatroom_name, chatrooms):
-    chatroom = findOrDefaultChatroomByName(chatroom_name)
+    chatroom = findOrDefaultChatroomByName(chatroom_name, chatrooms)
     if chatroom is None:
         chatroom = Chatroom(chatroom_name)
         chatrooms.append(chatroom)
