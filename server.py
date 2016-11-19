@@ -20,7 +20,7 @@ else:
     nbrCoAllowed = 10
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-print ("socket created")
+print "socket created"
 
 # Bind socket to local host and port
 try:
@@ -29,11 +29,11 @@ except socket.error as msg:
     print ('Bind failed. Error Code : ' + str(msg[0]) + ' Message ' + msg[1])
     sys.exit()
 
-print ('Socket bind complete')
+print 'Socket bind complete'
 
 # Start listening on socket
 s.listen(10)
-print ('Socket now listening')
+print 'Socket now listening'
 
 global serverOn
 serverOn = True
@@ -59,7 +59,7 @@ def clientThread(conn):
 
         if data == "KILL_SERVICE\n":
             serverOn = False
-            print("Shutting down server")
+            print "Shutting down server"
 
         if data[:4] == "HELO":
             text = data[5:]
