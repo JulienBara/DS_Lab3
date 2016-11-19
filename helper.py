@@ -32,13 +32,17 @@ def leaving(conn, chatroom_id, join_id, client_name):
     global chatrooms
     global joins
     chatroom = findOrDefaultChatroomById(chatroom_id, chatrooms)
+    print "step 1"
     if chatroom is not None:
+        print "step 2"
         join = findOrDefaultJoinById(join_id)
         if join is not None:
+            print "step 3"
             if chatroom.findOrDefaultJoinInChatroom(join) is not None:
+                print "step 4"
                 s = join.client_name + " has disconnected.\n\n"
                 sendingMessageToAllClientsOfChatroom(chatroom, s)
-                
+
                 chatroom.removeExistingJoinInChatroom(join)
                 joins.remove(join)
 
