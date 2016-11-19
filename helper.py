@@ -38,7 +38,7 @@ def leaving(conn, chatroom_id, join_id, client_name):
     print (chatroom)
     if chatroom is not None:
         print "step 2"
-        join = findOrDefaultJoinById(join_id, joins)
+        join = findOrDefaultJoinById(int(join_id), joins)
         if join is not None:
             print "step 3"
             if chatroom.findOrDefaultJoinInChatroom(join) is not None:
@@ -60,9 +60,9 @@ def leaving(conn, chatroom_id, join_id, client_name):
 def messaging(conn, chatroom_id, join_id, client_name, message):
     global chatrooms
     global joins
-    chatroom = findOrDefaultChatroomById(chatroom_id, chatrooms)
+    chatroom = findOrDefaultChatroomById(int(chatroom_id), chatrooms)
     if chatroom is not None:
-        join = findOrDefaultJoinById(join_id)
+        join = findOrDefaultJoinById(int(join_id))
         if join is not None:
             if chatroom.findOrDefaultJoinInChatroom(join) is not None:
                 s = "CHAT:" + str(join.chatroom.chatroom_id) + "\n" \
