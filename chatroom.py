@@ -8,7 +8,7 @@ class Chatroom:
         self.joins = []
 
     def findOrDefaultJoinInChatroom(self, searched_join):
-        for chatroom_join in enumerate(self.joins):
+        for chatroom_join in self.joins:
             if chatroom_join == searched_join:
                 return chatroom_join
         return None
@@ -23,14 +23,14 @@ class Chatroom:
 
 
 def findOrDefaultChatroomByName(chatroom_name, chatrooms):
-    for chatroom in enumerate(chatrooms):
+    for chatroom in chatrooms:
         if chatroom.client_name == chatroom_name:
             return chatroom
     return None
 
 
 def findOrDefaultChatroomById(chatroom_id, chatrooms):
-    for chatroom in enumerate(chatrooms):
+    for chatroom in chatrooms:
         if chatroom.chatroom_id == chatroom_id:
             return chatroom
     return None

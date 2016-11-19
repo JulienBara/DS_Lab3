@@ -65,7 +65,7 @@ def messaging(conn, chatroom_id, join_id, client_name, message):
 
 def disconnect(conn, client_ip, client_port, client_name):
     global chatrooms
-    for chatroom in enumerate(chatrooms):
+    for chatroom in chatrooms:
         join = findOrDefaultJoinByCo(conn, chatroom.join)
         if join is not None:
             leaving(conn, join.chatroom.chatroom_id, join.join_id, join.client_name)

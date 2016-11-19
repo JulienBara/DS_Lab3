@@ -12,14 +12,14 @@ class Join:
 
 
 def findOrDefaultJoinById(join_id, joins):
-    for join in enumerate(joins):
+    for join in joins:
         if join.join_id == join_id:
             return join
     return None
 
 
 def findOrDefaultJoinByCo(conn, joins):
-    for join in enumerate(joins):
+    for join in joins:
         if join.conn == conn:
             return conn
     return None
