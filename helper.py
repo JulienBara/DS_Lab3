@@ -66,11 +66,11 @@ def error(conn, number):
     s = "ERROR_CODE: "
 
     if number == 1:
-        s += "1\n"
-        + "ERROR_DESCRIPTION: No matching command."
+        s = s + "1\n"
+        + "ERROR_DESCRIPTION: No matching command.\n\n"
 
     sendingMessageToCo(conn, s)
-         
+
 
 def sendingMessageToCo(conn, message):
     conn.send(message)
