@@ -41,7 +41,9 @@ def leaving(conn, chatroom_id, join_id, client_name):
         join = findOrDefaultJoinById(int(join_id), joins)
         if join is not None:
             if chatroom.findOrDefaultJoinInChatroom(join) is not None:
-                s = join.client_name + " has disconnected.\n\n"
+                s = "CHAT:" + str(join.chatroom.chatroom_id) + "\n" \
+                    + "CLIENT_NAME:" + join.client_name + "\n" \
+                    + "MESSAGE:" + join.client_name + " has disconnected from this chatroom.\n\n"
                 sendingMessageToAllClientsOfChatroom(chatroom, s)
 
                 chatroom.removeExistingJoinInChatroom(join)
@@ -49,7 +51,6 @@ def leaving(conn, chatroom_id, join_id, client_name):
 
                 if len(chatroom.joins) == 0:
                     chatrooms.remove(chatroom)
-
 
 
 # TODO Opti en requetant d'abord le join puis en testant si bonne chatroom
