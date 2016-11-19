@@ -94,6 +94,8 @@ while serverOn:
             start_new_thread(clientThread, (conn,))
         except:
             print "accept timeout"
+            # TODO remove break when debug finished
+            break
             continue
 s.close()
 exit()
