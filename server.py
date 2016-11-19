@@ -52,6 +52,7 @@ def clientThread(conn):
         try:
             data = conn.recv(4096)
         except:
+            print "socket timeout"
             break
 
         if not data:
@@ -91,6 +92,7 @@ while serverOn:
             # start new thread takes 1st argument as a function name to be run, second is the tuple of arguments to the function.
             start_new_thread(clientThread, (conn,))
         except:
+            print "accept timeout"
             continue
 s.close()
 exit()
