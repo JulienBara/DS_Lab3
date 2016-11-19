@@ -42,8 +42,8 @@ def leaving(conn, chatroom_id, join_id, client_name):
         if join is not None:
             if chatroom.findOrDefaultJoinInChatroom(join) is not None:
                 s = "CHAT:" + str(join.chatroom.chatroom_id) + "\n" \
-                    + "CLIENT_NAME:" + join.client_name + "\n" \
-                    + "MESSAGE:" + join.client_name + " has left this chatroom.\n\n"
+                    + "CLIENT_NAME:" + client_name + "\n" \
+                    + "MESSAGE:" + client_name + " has left this chatroom.\n\n"
                 sendingMessageToAllClientsOfChatroom(chatroom, s)
 
                 chatroom.removeExistingJoinInChatroom(join)
