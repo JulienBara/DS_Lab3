@@ -8,7 +8,7 @@ from parse import *
 from multiprocessing import Process
 
 
-accept_timeout = 0.001
+accept_timeout = 10.0
 socket_timeout = 60.0
 
 global threads
