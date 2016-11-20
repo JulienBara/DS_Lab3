@@ -67,8 +67,8 @@ def clientThread(conn):
 
         if data == "KILL_SERVICE\n":
             serverOn = False
-            s.close()
-            shutdown()
+            # s.close()
+            # shutdown()
             print "Shutting down server"
             break
 

@@ -97,10 +97,10 @@ def disconnect(conn, client_ip, client_port, client_name):
 #     for join in joins:
 #         join.conn.close()
 
-def closeAllConns():
-    global conns
-    for conn in conns:
-        conn.close()
+# def closeAllConns():
+#     global conns
+#     for conn in conns:
+#         conn.close()
 
 
 def error(conn, number):
