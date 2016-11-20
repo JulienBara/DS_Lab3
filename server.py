@@ -62,12 +62,14 @@ def killsHandler(_sign, _stack_frame):
     global s
 
     for conn in conns:
-        conn.close()
+        # conn.close()
+        conn.shutdown(SHUT_RDWR)
 
     for pid in pids:
         os.kill(pid, signal.SIGTERM)
-        
-    s.close()
+
+    # s.close()
+    s.shutdown(SHUT_RDWR)
     exit()
 
 signal.signal(signal.SIGTERM, killsHandler)
@@ -121,7 +123,8 @@ def clientThread(conn):
 
     conns.remove(conn)
 
-    conn.close()
+    # conn.close()
+    conn.shutdown(SHUT_RDWR)
     exit()
 
 
@@ -154,7 +157,8 @@ while serverOn:
             # TODO remove break when debug finished
             # break
             pass
-s.close()
+# conn.close()
+conn.shutdown(SHUT_RDWR)
 exit()
 
 
