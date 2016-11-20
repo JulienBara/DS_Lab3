@@ -31,7 +31,7 @@ def findOrDefaultJoinByCo(conn, joins):
 
 def findOrDefaultJoinByChatroom(chatroom, joins):
     for join in joins:
-        if join.chatroom == chatroom:
+        if join.chatroom.chatroom_id == chatroom.chatroom_id:
             return join
     return None
 
