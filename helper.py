@@ -1,5 +1,3 @@
-# TODO add a better parsing of TYPE : VALUE cf email
-
 from chatroom import *
 from join import *
 
@@ -32,7 +30,6 @@ def joining(conn, chatroom_name, client_ip, client_port, client_name, host, port
     sendingMessageToAllClientsOfChatroom(chatroom, s)
 
 
-# TODO Opti en requetant d'abord le join puis en testant si bonne chatroom
 def leaving(conn, chatroom_id, join_id, client_name):
     global chatrooms
     global joins
@@ -54,7 +51,6 @@ def leaving(conn, chatroom_id, join_id, client_name):
             joins.remove(join)
 
 
-# TODO Opti en requetant d'abord le join puis en testant si bonne chatroom
 def messaging(conn, chatroom_id, join_id, client_name, message):
     global chatrooms
     global joins
