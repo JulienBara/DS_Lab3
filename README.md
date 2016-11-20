@@ -2,9 +2,7 @@
 
 ## Description
 
-This is a simple python multithreaded socket server implemented during the second Distributed Systems' lab.
-
-The project contains the server and a simple client (`client.py`) to test the server.
+This is a python multithreaded socket server implemented during the third Distributed Systems' lab.
 
 ## Requirements
 
@@ -29,12 +27,6 @@ You can launch the server with the command.
 
 ~~~~
 python server.py [ip] [port] [max connexions number]
-~~~~
-
-You can launch the client with the command.
-
-~~~~
-python client.py [ip] [port]
 ~~~~
 
 ### TCD further information
