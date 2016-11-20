@@ -38,7 +38,7 @@ def leaving(conn, chatroom_id, join_id, client_name):
         + "JOIN_ID:" + join_id + "\n"
     sendingMessageToCo(conn, s)
 
-    s = "CHAT:" + str(join.chatroom.chatroom_id) + "\n" \
+    s = "CHAT:" + str(chatroom_id) + "\n" \
         + "CLIENT_NAME:" + client_name + "\n" \
         + "MESSAGE:" + client_name + " has left this chatroom.\n\n"
     sendingMessageToCo(conn, s)
