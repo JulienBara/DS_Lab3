@@ -100,11 +100,16 @@ while serverOn:
 
             # start new thread takes 1st argument as a function name to be run, second is the tuple of arguments to the function.
             start_new_thread(clientThread, (conn,))
+
+        except KeyboardInterrupt:
+            print "Server stopped from keyboard"
+            break
+
         except:
             print "accept timeout"
             # TODO remove break when debug finished
             # break
-            continue
+            pass
 s.close()
 exit()
 
