@@ -61,13 +61,12 @@ def messaging(conn, chatroom_id, join_id, client_name, message):
 
     chatroom = findOrDefaultChatroomById(int(chatroom_id), chatrooms)
     if chatroom is not None:
-        join = findOrDefaultJoinById(int(join_id), joins)
+        join = chatroom.findOrDefaultJoinInChatroomByClientName(client_name)
         if join is not None:
-            if chatroom.findOrDefaultJoinInChatroom(join) is not None:
-                s = "CHAT:" + str(join.chatroom.chatroom_id) + "\n" \
-                    + "CLIENT_NAME:" + join.client_name + "\n"      \
-                    + "MESSAGE:" + message + "\n\n"
-                sendingMessageToAllClientsOfChatroom(join.chatroom, s)
+            s = "CHAT:" + str(join.chatroom.chatroom_id) + "\n" \
+                + "CLIENT_NAME:" + join.client_name + "\n"      \
+                + "MESSAGE:" + message + "\n\n"
+            sendingMessageToAllClientsOfChatroom(join.chatroom, s)
 
 
 def disconnect(conn, client_ip, client_port, client_name):
