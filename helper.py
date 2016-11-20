@@ -48,8 +48,8 @@ def leaving(conn, chatroom_id, join_id, client_name):
                     + "MESSAGE:" + client_name + " has left this chatroom.\n\n"
                 sendingMessageToAllClientsOfChatroom(chatroom, s)
 
-                # chatroom.removeExistingJoinInChatroom(join)
-                # joins.remove(join)
+                chatroom.removeExistingJoinInChatroom(join)
+                joins.remove(join)
 
                 if len(chatroom.joins) == 0:
                     chatrooms.remove(chatroom)
