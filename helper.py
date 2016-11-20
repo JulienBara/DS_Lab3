@@ -76,7 +76,7 @@ def messaging(conn, chatroom_id, join_id, client_name, message):
             sendingMessageToAllClientsOfChatroom(join.chatroom, s)
 
 
-def disconnect(conn, client_ip, client_port, client_name, conns):
+def disconnect(conn, client_ip, client_port, client_name):
     global chatrooms
 
     for chatroom in chatrooms:
@@ -92,8 +92,8 @@ def disconnect(conn, client_ip, client_port, client_name, conns):
 
     # conn.close()
 
-    conns.remove(conn)
-    conn.shutdown(socket.SHUT_RDWR)
+    # conns.remove(conn)
+    # conn.shutdown(socket.SHUT_RDWR)
 
 #
 # def closeAllJoinsConns():
