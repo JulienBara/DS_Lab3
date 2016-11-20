@@ -73,9 +73,16 @@ def disconnect(conn, client_ip, client_port, client_name):
     global chatrooms
 
     for chatroom in chatrooms:
-        join = findOrDefaultJoinByCo(conn, chatroom.joins)
+        join = chatroom.findOrDefaultJoinInChatroomByClientName(client_name)
         if join is not None:
-            leaving(conn, str(join.chatroom.chatroom_id), str(join.join_id), join.client_name)
+            s = "CHAT:" + str(chatroom.chatroom_id) + "\n"  \
+                + "CLIENT_NAME:" + client_name + "\n"       \
+                + "MESSAGE:" + client_name + " has left this chatroom.\n\n"
+            sendingMessageToAllClientsOfChatroom(join.chatroom, s)
+
+            join.chatroom.removeExistingJoinInChatroom(join)
+            joins.remove(join)
+
     conn.close()
 
 
