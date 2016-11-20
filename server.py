@@ -32,7 +32,7 @@ else:
     port = 3000
     nbrCoAllowed = 10
 
-# global s
+global s
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 print "socket created"
 
@@ -59,12 +59,15 @@ nbrCoClient = 0
 def killsHandler(_sign, _stack_frame):
     global pids
     global conns
+    global s
 
     for conn in conns:
         conn.close()
 
     for pid in pids:
         os.kill(pid, signal.SIGTERM)
+        
+    s.close()
     exit()
 
 signal.signal(signal.SIGTERM, killsHandler)
