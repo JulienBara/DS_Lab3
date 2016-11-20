@@ -54,4 +54,4 @@ def parse(conn, data, host, port):
 
 
 def shutdown():
-    closeAllJoinsConns()
+    closeAllConns()
