@@ -5,14 +5,6 @@ from thread import *
 
 from parse import *
 
-import os
-import signal
-
-# global conns
-# conns = []
-#
-# global pids
-# pids = []
 
 accept_timeout = 10.0
 socket_timeout = 60.0
@@ -51,34 +43,10 @@ global nbrCoClient
 nbrCoClient = 0
 
 
-# def killsHandler(_sign, _stack_frame):
-#     global pids
-#     global conns
-#     global s
-#
-#     for conn in conns:
-#         conn.shutdown(socket.SHUT_RDWR)
-#
-#     for pid in pids:
-#         os.kill(pid, signal.SIGTERM)
-#
-#     s.close()
-#     s.shutdown(socket.SHUT_RDWR)
-#     # exit()
-#
-# signal.signal(signal.SIGTERM, killsHandler)
-
-
 # Function for handling connections. This will be used to create threads
 def clientThread(conn):
     global nbrCoClient
     global serverOn
-    # global s
-    # global pids
-    # global conns
-
-    # conns.append(conn)
-    # pids.append(os.getpid())
 
     conn.settimeout(socket_timeout)
 
@@ -98,12 +66,7 @@ def clientThread(conn):
 
         if data == "KILL_SERVICE\n":
             serverOn = False
-            # s.close()
-            # shutdown()
-            # killAll()
             print "Shutting down server"
-            # interrupt_main()
-            # os.kill(os.getppid(), signal.SIGTERM)
             break
 
         elif data[:4] == "HELO":
@@ -115,16 +78,12 @@ def clientThread(conn):
 
     nbrCoClient -= 1
 
-    # conns.remove(conn)
-
-    # conn.close()
     conn.shutdown(socket.SHUT_RDWR)
     exit()
 
 
 while serverOn:
     if nbrCoAllowed > nbrCoClient:
-        # wait to accept a connection - blocking call
         s.settimeout(accept_timeout)
         try:
             conn, addr = s.accept()
@@ -137,10 +96,6 @@ while serverOn:
 
             # start new thread takes 1st argument as a function name to be run, second is the tuple of arguments to the function.
             start_new_thread(clientThread, (conn,))
-            # t = Process(target=clientThread, args=(conn,))
-            # threads.append(t)
-            # t.start()
-            # conns.append(conn)
 
         except KeyboardInterrupt:
             print "Server stopped from keyboard"
@@ -155,18 +110,6 @@ while serverOn:
 s.shutdown(socket.SHUT_RDWR)
 exit()
 
-
-# def killAll():
-#     global threads
-#     global conns
-#
-#     for conn in conns:
-#         print ("closing " + str(conn))
-#         conn.close()
-#
-#     for thread in threads:
-#         print ("killing " + str(thread))
-#         thread.terminate()
 
 
 
