@@ -51,7 +51,7 @@ def parse(conn, data, host, port):
 
         print "Now in case no match"
 
-        error(conn, 1)
+        # error(conn, 1)
 
         disco = True
 
