@@ -80,13 +80,15 @@ def disconnect(conn, client_ip, client_port, client_name):
     for chatroom in chatrooms:
         join = chatroom.findOrDefaultJoinInChatroomByClientName(client_name)
         if join is not None:
+            join.chatroom.removeExistingJoinInChatroom(join)
+            joins.remove(join)
+            
             s = "CHAT:" + str(chatroom.chatroom_id) + "\n"  \
                 + "CLIENT_NAME:" + client_name + "\n"       \
                 + "MESSAGE:" + client_name + " has left this chatroom.\n\n"
             sendingMessageToAllClientsOfChatroom(join.chatroom, s)
 
-            join.chatroom.removeExistingJoinInChatroom(join)
-            joins.remove(join)
+
 
     conn.close()
     # conns.remove(conn)
