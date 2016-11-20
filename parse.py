@@ -7,6 +7,8 @@ def parse(conn, data, host, port):
 
     lines = data.split("\n")
 
+    encountered_error = False
+
     if lines[0][:14] == "JOIN_CHATROOM:":
 
         print "Now in case join_chatroom"
@@ -50,3 +52,7 @@ def parse(conn, data, host, port):
         print "Now in case no match"
 
         error(conn, 1)
+
+        encountered_error = True
+
+    return encountered_error
