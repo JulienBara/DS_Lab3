@@ -68,9 +68,10 @@ def killsHandler(_sign, _stack_frame):
     for pid in pids:
         os.kill(pid, signal.SIGTERM)
 
+    os.kill(os.getpid(), signal.SIGTERM)
     # s.close()
-    s.shutdown(socket.SHUT_RDWR)
-    exit()
+    # s.shutdown(socket.SHUT_RDWR)
+    # exit()
 
 signal.signal(signal.SIGTERM, killsHandler)
 
