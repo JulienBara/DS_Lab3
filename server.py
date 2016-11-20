@@ -89,7 +89,7 @@ def clientThread(conn):
 
     nbrCoClient -= 1
 
-    conns.remove(conn)
+    # conns.remove(conn)
 
     conn.close()
     exit()
