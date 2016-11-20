@@ -47,7 +47,7 @@ nbrCoClient = 0
 def clientThread(conn):
     global nbrCoClient
     global serverOn
-    global s
+    # global s
 
     conn.settimeout(socket_timeout)
 
