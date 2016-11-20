@@ -51,3 +51,7 @@ def parse(conn, data, host, port):
         print "Now in case no match"
 
         error(conn, 1)
+
+
+def shutdown():
+    closeAllJoinsConns()

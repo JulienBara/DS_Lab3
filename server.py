@@ -8,7 +8,7 @@ from parse import *
 
 
 accept_timeout = 20.0
-socket_timeout = 0.01
+socket_timeout = 10.0
 
 
 if len(sys.argv) > 3:
@@ -55,8 +55,6 @@ def clientThread(conn):
             data = conn.recv(4096)
         except:
             print "socket timeout"
-            time.sleep(0.1)
-            continue
             break
 
         if not data:
@@ -66,6 +64,7 @@ def clientThread(conn):
 
         if data == "KILL_SERVICE\n":
             serverOn = False
+            shutdown()
             print "Shutting down server"
 
         elif data[:4] == "HELO":

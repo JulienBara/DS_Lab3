@@ -86,6 +86,12 @@ def disconnect(conn, client_ip, client_port, client_name):
     conn.close()
 
 
+def closeAllJoinsConns():
+    global joins
+    for join in joins:
+        join.conn.close()
+
+
 def error(conn, number):
     s = "ERROR_CODE:"
 
