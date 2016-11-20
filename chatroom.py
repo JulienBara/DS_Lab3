@@ -13,7 +13,7 @@ class Chatroom:
 
     def findOrDefaultJoinInChatroom(self, searched_join):
         for chatroom_join in self.joins:
-            if chatroom_join == searched_join:
+            if chatroom_join.join_id == searched_join.join_id:
                 return chatroom_join
         return None
 
