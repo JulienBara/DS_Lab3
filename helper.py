@@ -1,7 +1,5 @@
 # TODO add a better parsing of TYPE : VALUE cf email
 
-import socket
-
 from chatroom import *
 from join import *
 
@@ -11,21 +9,16 @@ chatrooms = []
 global joins
 joins = []
 
-# global conns
-# conns = []
-
 
 def joining(conn, chatroom_name, client_ip, client_port, client_name, host, port):
     global chatrooms
     global joins
-    # global conns
 
     chatroom = findOrCreateChatroomByName(chatroom_name, chatrooms)
     join = Join(conn, client_name, chatroom, client_ip, client_port)
 
     joins.append(join)
     chatroom.joins.append(join)
-    # conns.append(conn)
 
     s = "JOINED_CHATROOM:" + join.chatroom.chatroom_name + "\n" \
         + "SERVER_IP:" + host + "\n"                            \
@@ -89,22 +82,6 @@ def disconnect(conn, client_ip, client_port, client_name):
 
             join.chatroom.removeExistingJoinInChatroom(join)
             joins.remove(join)
-
-    # conn.close()
-
-    # conns.remove(conn)
-    # conn.shutdown(socket.SHUT_RDWR)
-
-#
-# def closeAllJoinsConns():
-#     global joins
-#     for join in joins:
-#         join.conn.close()
-
-# def closeAllConns():
-#     global conns
-#     for conn in conns:
-#         conn.close()
 
 
 def error(conn, number):

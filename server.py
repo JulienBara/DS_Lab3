@@ -8,16 +8,11 @@ from parse import *
 import os
 import signal
 
-# from multiprocessing import Process
+# global conns
+# conns = []
 #
-# global threads
-# threads = []
-#
-global conns
-conns = []
-
-global pids
-pids = []
+# global pids
+# pids = []
 
 accept_timeout = 10.0
 socket_timeout = 60.0
@@ -56,24 +51,22 @@ global nbrCoClient
 nbrCoClient = 0
 
 
-def killsHandler(_sign, _stack_frame):
-    global pids
-    global conns
-    global s
-
-    for conn in conns:
-        # conn.close()
-        conn.shutdown(socket.SHUT_RDWR)
-
-    for pid in pids:
-        os.kill(pid, signal.SIGTERM)
-
-    # os.kill(os.getpid(), signal.SIGTERM)
-    s.close()
-    s.shutdown(socket.SHUT_RDWR)
-    # exit()
-
-signal.signal(signal.SIGTERM, killsHandler)
+# def killsHandler(_sign, _stack_frame):
+#     global pids
+#     global conns
+#     global s
+#
+#     for conn in conns:
+#         conn.shutdown(socket.SHUT_RDWR)
+#
+#     for pid in pids:
+#         os.kill(pid, signal.SIGTERM)
+#
+#     s.close()
+#     s.shutdown(socket.SHUT_RDWR)
+#     # exit()
+#
+# signal.signal(signal.SIGTERM, killsHandler)
 
 
 # Function for handling connections. This will be used to create threads
@@ -81,11 +74,11 @@ def clientThread(conn):
     global nbrCoClient
     global serverOn
     # global s
-    global pids
-    global conns
+    # global pids
+    # global conns
 
-    conns.append(conn)
-    pids.append(os.getpid())
+    # conns.append(conn)
+    # pids.append(os.getpid())
 
     conn.settimeout(socket_timeout)
 
@@ -110,7 +103,7 @@ def clientThread(conn):
             # killAll()
             print "Shutting down server"
             # interrupt_main()
-            os.kill(os.getppid(), signal.SIGTERM)
+            # os.kill(os.getppid(), signal.SIGTERM)
             break
 
         elif data[:4] == "HELO":
@@ -122,7 +115,7 @@ def clientThread(conn):
 
     nbrCoClient -= 1
 
-    conns.remove(conn)
+    # conns.remove(conn)
 
     # conn.close()
     conn.shutdown(socket.SHUT_RDWR)

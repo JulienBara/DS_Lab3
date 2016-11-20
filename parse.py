@@ -1,7 +1,6 @@
 from helper import *
 
 
-# TODO We could check integrity of each line in if
 def parse(conn, data, host, port):
 
     print "Now in parse"
@@ -51,7 +50,3 @@ def parse(conn, data, host, port):
         print "Now in case no match"
 
         error(conn, 1)
-
-
-# def shutdown():
-#     closeAllConns()
