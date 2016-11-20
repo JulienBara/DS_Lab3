@@ -6,7 +6,7 @@ class Join:
 
     def __init__(self, conn, client_name, chatroom, client_ip, client_port):
         global join_next_id
-        # self.conn = conn
+        self.conn = conn
         self.client_name = client_name
         self.chatroom = chatroom
         self.client_ip = client_ip
