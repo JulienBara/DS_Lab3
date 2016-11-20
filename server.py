@@ -153,7 +153,7 @@ while serverOn:
             print "Server stopped from keyboard"
             break
 
-        except:
+        except socket.timeout:
             print "accept timeout"
             # TODO remove break when debug finished
             # break
