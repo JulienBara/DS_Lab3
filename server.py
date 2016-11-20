@@ -71,6 +71,7 @@ def clientThread(conn):
             shutdown()
             s.close()
             print "Shutting down server"
+            break
 
         elif data[:4] == "HELO":
             text = data[5:]
