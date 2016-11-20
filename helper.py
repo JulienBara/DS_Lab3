@@ -2,6 +2,7 @@ import time
 
 from chatroom import *
 from join import *
+from client_conn import *
 
 global chatrooms
 chatrooms = []
@@ -9,14 +10,21 @@ chatrooms = []
 global joins
 joins = []
 
+global client_conns
+client_conns = []
 
 def joining(conn, chatroom_name, client_ip, client_port, client_name, host, port):
     global chatrooms
     global joins
+    global client_conns
+
     chatroom = findOrCreateChatroomByName(chatroom_name, chatrooms)
     join = Join(conn, client_name, chatroom, client_ip, client_port)
+    client_co = findOrCreateClientConnByClientName(conn, client_name, client_conns)
+
     joins.append(join)
     chatroom.joins.append(join)
+
     s = "JOINED_CHATROOM:" + join.chatroom.chatroom_name + "\n" \
         + "SERVER_IP:" + host + "\n"                            \
         + "PORT:" + str(port) + "\n"                            \
@@ -33,6 +41,7 @@ def joining(conn, chatroom_name, client_ip, client_port, client_name, host, port
 def leaving(conn, chatroom_id, join_id, client_name):
     global chatrooms
     global joins
+    global client_conns
 
     s = "LEFT_CHATROOM:" + chatroom_id + "\n" \
         + "JOIN_ID:" + join_id + "\n"
@@ -55,6 +64,8 @@ def leaving(conn, chatroom_id, join_id, client_name):
 def messaging(conn, chatroom_id, join_id, client_name, message):
     global chatrooms
     global joins
+    global client_conns
+
     chatroom = findOrDefaultChatroomById(int(chatroom_id), chatrooms)
     if chatroom is not None:
         join = findOrDefaultJoinById(int(join_id))
@@ -91,7 +102,12 @@ def sendingMessageToCo(conn, message):
 
 
 def sendingMessageToAllClientsOfChatroom(chatroom, message):
+    global client_conns
+
     for join in chatroom.joins:
-        sendingMessageToCo(join.conn, message)
+        client_name = join.client_name
+        client_conn = findOrDefaultConnByClientName(client_name, client_conns)
+        if client_conn is not None:
+            sendingMessageToCo(client_conn.conn, message)
 
 
