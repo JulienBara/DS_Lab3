@@ -1,4 +1,4 @@
-import time
+# TODO add a better parsing of TYPE : VALUE cf email
 
 from chatroom import *
 from join import *
@@ -75,7 +75,7 @@ def disconnect(conn, client_ip, client_port, client_name):
     for chatroom in chatrooms:
         join = findOrDefaultJoinByCo(conn, chatroom.joins)
         if join is not None:
-            leaving(conn, join.chatroom.chatroom_id, join.join_id, join.client_name)
+            leaving(conn, str(join.chatroom.chatroom_id), str(join.join_id), join.client_name)
     conn.close()
 
 
