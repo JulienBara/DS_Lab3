@@ -1,13 +1,14 @@
 import socket
 import sys
+import time
 
 from thread import *
 
 from parse import *
 
 
-accept_timeout = 0.00001
-socket_timeout = 0.00001
+accept_timeout = 0.001
+socket_timeout = 0.001
 
 
 if len(sys.argv) > 3:
@@ -47,7 +48,7 @@ nbrCoClient = 0
 def clientThread(conn):
     global nbrCoClient
     global serverOn
-    global s
+    # global s
 
     conn.settimeout(socket_timeout)
 
@@ -58,6 +59,7 @@ def clientThread(conn):
             data = conn.recv(4096)
         except:
             print "socket timeout"
+            time.sleep(1)
             pass
             # break
 
@@ -107,6 +109,7 @@ while serverOn:
 
         except:
             print "accept timeout"
+            time.sleep(1)
             # TODO remove break when debug finished
             # break
             pass
