@@ -61,7 +61,7 @@ def messaging(conn, chatroom_id, join_id, client_name, message):
 
     chatroom = findOrDefaultChatroomById(int(chatroom_id), chatrooms)
     if chatroom is not None:
-        join = findOrDefaultJoinById(int(join_id))
+        join = findOrDefaultJoinById(int(join_id), joins)
         if join is not None:
             if chatroom.findOrDefaultJoinInChatroom(join) is not None:
                 s = "CHAT:" + str(join.chatroom.chatroom_id) + "\n" \
