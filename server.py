@@ -61,6 +61,8 @@ def killsHandler(_sign, _stack_frame):
     global conns
     global s
 
+    os.kill(os.getppid(), signal.SIGTERM)
+
     for conn in conns:
         # conn.close()
         conn.shutdown(socket.SHUT_RDWR)
