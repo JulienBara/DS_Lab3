@@ -59,7 +59,7 @@ def clientThread(conn):
             data = conn.recv(4096)
         except:
             print "socket timeout"
-            time.sleep(1)
+            time.sleep(10)
             pass
             # break
 
@@ -109,7 +109,7 @@ while serverOn:
 
         except:
             print "accept timeout"
-            time.sleep(1)
+            time.sleep(10)
             # TODO remove break when debug finished
             # break
             pass
