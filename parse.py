@@ -15,7 +15,7 @@ def parse(conn, data, host, port):
         chatroom_name = lines[0][14:]
         client_ip = lines[1][10:]
         client_port = lines[2][5:]
-        client_name = lines[3][12:]
+        client_name = lines[3][13:]
         joining(conn, chatroom_name, client_ip, client_port, client_name, host, port)
 
     elif lines[0][:15] == "LEAVE_CHATROOM:":
@@ -24,7 +24,7 @@ def parse(conn, data, host, port):
 
         chatroom_id = lines[0][15:]
         join_id = lines[1][8:]
-        client_name = lines[2][12:]
+        client_name = lines[2][13:]
         leaving(conn, chatroom_id, join_id, client_name)
 
     elif lines[0][:11] == "DISCONNECT:":
@@ -33,7 +33,7 @@ def parse(conn, data, host, port):
 
         client_ip = lines[0][11:]
         client_port = lines[1][5:]
-        client_name = lines[2][12:]
+        client_name = lines[2][13:]
         disconnect(conn, client_ip, client_port, client_name)
 
     elif lines[0][:5] == "CHAT:":
@@ -42,7 +42,7 @@ def parse(conn, data, host, port):
 
         chatroom_id = lines[0][5:]
         join_id = lines[1][8:]
-        client_name = lines[2][12:]
+        client_name = lines[2][13:]
         message = lines[3][8:]
         messaging(conn, chatroom_id, join_id, client_name, message)
 
