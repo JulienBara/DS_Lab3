@@ -7,7 +7,7 @@ from thread import *
 from parse import *
 
 
-accept_timeout = 1.0
+accept_timeout = 0.001
 socket_timeout = 60.0
 
 
@@ -68,8 +68,8 @@ def clientThread(conn):
 
         if data == "KILL_SERVICE\n":
             serverOn = False
-            shutdown()
             s.close()
+            shutdown()
             print "Shutting down server"
             break
 
