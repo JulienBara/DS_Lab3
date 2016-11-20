@@ -58,7 +58,8 @@ def clientThread(conn):
             data = conn.recv(4096)
         except:
             print "socket timeout"
-            break
+            pass
+            # break
 
         if not data:
             break
