@@ -112,6 +112,7 @@ while serverOn:
             # start_new_thread(clientThread, (conn,))
             t = Process(target=clientThread, args=(conn,))
             threads.append(t)
+            t.start()
             conns.append(conn)
 
         except KeyboardInterrupt:
