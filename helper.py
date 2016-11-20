@@ -41,9 +41,10 @@ def leaving(conn, chatroom_id, join_id, client_name):
         + "JOIN_ID:" + join_id + "\n"
     sendingMessageToCo(conn, s)
 
+    #TODO for the moment we are assuming chatroom_id and join_id are coherent by user, we may have to check that
     chatroom = findOrDefaultChatroomById(int(chatroom_id), chatrooms)
     if chatroom is not None:
-        join = findOrDefaultJoinByChatroom(chatroom, joins)
+        join = findOrDefaultJoinById(join_id, joins)
         if join is not None:
             s = "CHAT:" + chatroom_id + "\n" \
                 + "CLIENT_NAME:" + client_name + "\n" \
