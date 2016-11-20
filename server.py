@@ -73,7 +73,7 @@ def clientThread(conn):
             try:
                 parse(conn, data, host, port)
             except:
-                print ("Unexpected error:" + sys.exc_info()[0])
+                print ("Unexpected error:" + str(sys.exc_info()[0]))
 
     nbrCoClient -= 1
     conn.close()
