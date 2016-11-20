@@ -20,6 +20,7 @@ else:
     port = 3000
     nbrCoAllowed = 10
 
+global s
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 print "socket created"
 
@@ -42,12 +43,15 @@ serverOn = True
 global nbrCoClient
 nbrCoClient = 0
 
+
 # Function for handling connections. This will be used to create threads
 def clientThread(conn):
-    conn.settimeout(socket_timeout)
-
     global nbrCoClient
     global serverOn
+    global s
+
+    conn.settimeout(socket_timeout)
+
     while serverOn:
 
         try:
@@ -65,6 +69,7 @@ def clientThread(conn):
         if data == "KILL_SERVICE\n":
             serverOn = False
             shutdown()
+            s.close()
             print "Shutting down server"
 
         elif data[:4] == "HELO":
