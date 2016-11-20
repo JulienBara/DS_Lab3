@@ -76,7 +76,7 @@ def clientThread(conn):
         conn.close()
         exit()
 
-    signal.signal(signal.SIGTERM, killsHandler)
+    signal.signal(signal.SIGTERM, killHandler)
 
 
     pids.append(os.getpid())
