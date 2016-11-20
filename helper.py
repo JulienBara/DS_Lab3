@@ -89,7 +89,7 @@ def error(conn, number):
 
     if number == 1:
         s += "1\n" \
-            + "ERROR_DESCRIPTION:No matching command.\n"
+            + "ERROR_DESCRIPTION:No matching command."
 
     sendingMessageToCo(conn, s)
 
