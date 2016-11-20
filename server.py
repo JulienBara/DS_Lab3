@@ -19,7 +19,7 @@ else:
     port = 3000
     nbrCoAllowed = 10
 
-global s
+# global s
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 print "socket created"
 
