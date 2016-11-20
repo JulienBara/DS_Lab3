@@ -153,7 +153,7 @@ exit()
 #         print ("killing " + str(thread))
 #         thread.terminate()
 
-def killHandler():
+def killHandler(_sign, _stack_frame):
     global pids
     for pid in pids:
         os.kill(pid, signal.SIGTERM)
