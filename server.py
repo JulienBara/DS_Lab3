@@ -55,6 +55,12 @@ serverOn = True
 global nbrCoClient
 nbrCoClient = 0
 
+
+def killHandler(_sign, _stack_frame):
+    global pids
+    for pid in pids:
+        os.kill(pid, signal.SIGTERM)
+
 signal.signal(signal.SIGTERM, killHandler)
 
 
@@ -153,10 +159,7 @@ exit()
 #         print ("killing " + str(thread))
 #         thread.terminate()
 
-def killHandler(_sign, _stack_frame):
-    global pids
-    for pid in pids:
-        os.kill(pid, signal.SIGTERM)
+
 
 
 
