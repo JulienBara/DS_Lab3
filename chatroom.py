@@ -1,10 +1,14 @@
+global chatroom_next_id
+chatroom_next_id = 1
+
+
 class Chatroom:
-    chatroomNextId = 1
 
     def __init__(self, chatroom_name):
+        global chatroom_next_id
         self.chatroom_name = chatroom_name
-        self.chatroom_id = self.chatroomNextId
-        self.chatroomNextId += 1
+        self.chatroom_id = self.chatroom_next_id
+        self.chatroom_next_id += 1
         self.joins = []
 
     def findOrDefaultJoinInChatroom(self, searched_join):
