@@ -59,7 +59,7 @@ def clientThread(conn):
         if not data:
             break
 
-        print ("received : '" + data + "'")
+        print ("received : '" + data + "' from '" + str(conn) + "'")
 
         if data == "KILL_SERVICE\n":
             serverOn = False
