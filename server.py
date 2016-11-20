@@ -70,10 +70,7 @@ def clientThread(conn):
             conn.send("HELO " + text + "IP:" + host + "\nPort:" + str(port) + "\nStudentID:" + "16337089" + "\n")
 
         else:
-            try:
-                parse(conn, data, host, port)
-            except:
-                print ("Unexpected error:" + str(sys.exc_info()[0]))
+            parse(conn, data, host, port)
 
     nbrCoClient -= 1
     conn.close()
