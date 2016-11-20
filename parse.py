@@ -7,7 +7,7 @@ def parse(conn, data, host, port):
 
     lines = data.split("\n")
 
-    disco = False
+    err = False
 
     if lines[0][:14] == "JOIN_CHATROOM:":
 
@@ -51,8 +51,6 @@ def parse(conn, data, host, port):
 
         print "Now in case no match"
 
-        # error(conn, 1)
+        err = True
 
-        disco = True
-
-    return disco
+    return err
