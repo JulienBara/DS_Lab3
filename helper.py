@@ -44,7 +44,7 @@ def leaving(conn, chatroom_id, join_id, client_name):
     #TODO for the moment we are assuming chatroom_id and join_id are coherent by user, we may have to check that
     chatroom = findOrDefaultChatroomById(int(chatroom_id), chatrooms)
     if chatroom is not None:
-        join = findOrDefaultJoinById(join_id, joins)
+        join = findOrDefaultJoinById(int(join_id), joins)
         if join is not None:
             s = "CHAT:" + chatroom_id + "\n" \
                 + "CLIENT_NAME:" + client_name + "\n" \
