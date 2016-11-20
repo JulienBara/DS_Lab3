@@ -57,12 +57,6 @@ def leaving(conn, chatroom_id, join_id, client_name):
                     + "MESSAGE:" + client_name + " has left this chatroom.\n\n"
                 sendingMessageToAllClientsOfChatroom(join.chatroom, s)
 
-                # chatroom.removeExistingJoinInChatroom(join)
-                # joins.remove(join)
-
-                # if len(chatroom.joins) == 0:
-                #     chatrooms.remove(chatroom)
-
 
 # TODO Opti en requetant d'abord le join puis en testant si bonne chatroom
 def messaging(conn, chatroom_id, join_id, client_name, message):
