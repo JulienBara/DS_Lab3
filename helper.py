@@ -38,24 +38,22 @@ def leaving(conn, chatroom_id, join_id, client_name):
         + "JOIN_ID:" + join_id + "\n"
     sendingMessageToCo(conn, s)
 
-    # s = "CHAT:" + chatroom_id + "\n" \
-    #     + "CLIENT_NAME:" + client_name + "\n" \
-    #     + "MESSAGE:" + client_name + " has left this chatroom.\n\n"
-    # sendingMessageToCo(conn, s)
+    s = "CHAT:" + chatroom_id + "\n" \
+        + "CLIENT_NAME:" + client_name + "\n" \
+        + "MESSAGE:" + client_name + " has left this chatroom.\n\n"
+    sendingMessageToCo(conn, s)
 
     # chatroom = findOrDefaultChatroomById(int(chatroom_id), chatrooms)
     # if chatroom is not None:
     join = findOrDefaultJoinById(int(join_id), joins)
     if join is not None:
-
+        join.chatroom.removeExistingJoinInChatroom(join)
+        joins.remove(join)
 
         s = "CHAT:" + chatroom_id + "\n" \
             + "CLIENT_NAME:" + client_name + "\n" \
             + "MESSAGE:" + client_name + " has left this chatroom.\n\n"
         sendingMessageToAllClientsOfChatroom(join.chatroom, s)
-
-        join.chatroom.removeExistingJoinInChatroom(join)
-        joins.remove(join)
 
 
 # TODO Opti en requetant d'abord le join puis en testant si bonne chatroom
