@@ -74,8 +74,8 @@ def clientThread(conn):
 
         else:
             disco = parse(conn, data, host, port)
-            if disco:
-                break
+            # if disco:
+            #     break
 
     nbrCoClient -= 1
 
