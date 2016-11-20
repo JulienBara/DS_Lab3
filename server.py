@@ -79,7 +79,8 @@ def clientThread(conn):
 
     nbrCoClient -= 1
 
-    conn.shutdown(socket.SHUT_RDWR)
+    conn.close()
+    # conn.shutdown(socket.SHUT_RDWR)
     exit()
 
 
