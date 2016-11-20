@@ -43,10 +43,9 @@ def leaving(conn, chatroom_id, join_id, client_name):
         + "MESSAGE:" + client_name + " has left this chatroom.\n\n"
     sendingMessageToCo(conn, s)
 
-    chatroom = findOrDefaultChatroomById(chatroom_id, chatrooms)
+    chatroom = findOrDefaultChatroomById(int(chatroom_id), chatrooms)
 
     print "step 1"
-    print (chatroom)
 
     if chatroom is not None:
 
