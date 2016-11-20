@@ -5,6 +5,9 @@ from thread import *
 
 from parse import *
 
+import os
+import signal
+
 # from multiprocessing import Process
 #
 # global threads
@@ -12,6 +15,9 @@ from parse import *
 #
 # global conns
 # conns = []
+
+global pids
+pids = []
 
 accept_timeout = 10.0
 socket_timeout = 60.0
@@ -49,12 +55,17 @@ serverOn = True
 global nbrCoClient
 nbrCoClient = 0
 
+signal.signal(signal.SIGTERM, killHandler)
+
 
 # Function for handling connections. This will be used to create threads
 def clientThread(conn):
     global nbrCoClient
     global serverOn
     # global s
+    global pids
+
+    pids.append(os.getpid())
 
     conn.settimeout(socket_timeout)
 
@@ -78,7 +89,8 @@ def clientThread(conn):
             # shutdown()
             # killAll()
             print "Shutting down server"
-            interrupt_main()
+            # interrupt_main()
+            os.kill(os.getppid(), signal.SIGTERM)
             break
 
         elif data[:4] == "HELO":
@@ -114,7 +126,7 @@ while serverOn:
             # t = Process(target=clientThread, args=(conn,))
             # threads.append(t)
             # t.start()
-            conns.append(conn)
+            # conns.append(conn)
 
         except KeyboardInterrupt:
             print "Server stopped from keyboard"
@@ -140,6 +152,11 @@ exit()
 #     for thread in threads:
 #         print ("killing " + str(thread))
 #         thread.terminate()
+
+def killHandler():
+    global pids
+    for pid in pids:
+        os.kill(pid, signal.SIGTERM)
 
 
 
