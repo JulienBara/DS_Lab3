@@ -13,8 +13,8 @@ import signal
 # global threads
 # threads = []
 #
-# global conns
-# conns = []
+global conns
+conns = []
 
 global pids
 pids = []
@@ -58,6 +58,11 @@ nbrCoClient = 0
 
 def killsHandler(_sign, _stack_frame):
     global pids
+    global conns
+
+    for conn in conns:
+        conn.close()
+
     for pid in pids:
         os.kill(pid, signal.SIGTERM)
     exit()
@@ -71,14 +76,9 @@ def clientThread(conn):
     global serverOn
     # global s
     global pids
+    global conns
 
-    def killHandler(_sign, _stack_frame):
-        conn.close()
-        exit()
-
-    signal.signal(signal.SIGTERM, killHandler)
-
-
+    conns.append(conn)
     pids.append(os.getpid())
 
     conn.settimeout(socket_timeout)
@@ -116,7 +116,7 @@ def clientThread(conn):
 
     nbrCoClient -= 1
 
-    # conns.remove(conn)
+    conns.remove(conn)
 
     conn.close()
     exit()
