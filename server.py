@@ -7,7 +7,7 @@ from parse import *
 
 
 accept_timeout = 20.0
-socket_timeout = 0.0001
+socket_timeout = 0.01
 
 
 if len(sys.argv) > 3:
