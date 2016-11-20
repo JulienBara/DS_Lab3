@@ -38,11 +38,20 @@ def leaving(conn, chatroom_id, join_id, client_name):
         + "JOIN_ID:" + join_id + "\n"
     sendingMessageToCo(conn, s)
 
+    s = "CHAT:" + str(join.chatroom.chatroom_id) + "\n" \
+        + "CLIENT_NAME:" + client_name + "\n" \
+        + "MESSAGE:" + client_name + " has left this chatroom.\n\n"
+    sendingMessageToCo(conn, s)
+
     chatroom = findOrDefaultChatroomById(int(chatroom_id), chatrooms)
     if chatroom is not None:
         join = findOrDefaultJoinById(int(join_id), joins)
         if join is not None:
             if chatroom.findOrDefaultJoinInChatroom(join) is not None:
+
+                chatroom.removeExistingJoinInChatroom(join)
+                joins.remove(join)
+
                 s = "CHAT:" + str(join.chatroom.chatroom_id) + "\n" \
                     + "CLIENT_NAME:" + client_name + "\n" \
                     + "MESSAGE:" + client_name + " has left this chatroom.\n\n"
