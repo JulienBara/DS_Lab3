@@ -6,8 +6,8 @@ from thread import *
 from parse import *
 
 
-accept_timeout = 10.0
-socket_timeout = 60.0
+accept_timeout = 0.00001
+socket_timeout = 0.00001
 
 
 if len(sys.argv) > 3:
