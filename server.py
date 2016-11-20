@@ -117,7 +117,7 @@ def clientThread(conn):
             conn.send("HELO " + text + "IP:" + host + "\nPort:" + str(port) + "\nStudentID:" + "16337089" + "\n")
 
         else:
-            parse(conn, data, host, port)
+            parse(conn, data, host, port, conns)
 
     nbrCoClient -= 1
 

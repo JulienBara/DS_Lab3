@@ -2,7 +2,7 @@ from helper import *
 
 
 # TODO We could check integrity of each line in if
-def parse(conn, data, host, port):
+def parse(conn, data, host, port, conns):
 
     print "Now in parse"
 
@@ -34,7 +34,7 @@ def parse(conn, data, host, port):
         client_ip = lines[0][11:]
         client_port = lines[1][5:]
         client_name = lines[2][12:]
-        disconnect(conn, client_ip, client_port, client_name)
+        disconnect(conn, client_ip, client_port, client_name, conns)
 
     elif lines[0][:5] == "CHAT:":
 
