@@ -56,12 +56,13 @@ global nbrCoClient
 nbrCoClient = 0
 
 
-def killHandler(_sign, _stack_frame):
+def killsHandler(_sign, _stack_frame):
     global pids
     for pid in pids:
         os.kill(pid, signal.SIGTERM)
+    exit()
 
-signal.signal(signal.SIGTERM, killHandler)
+signal.signal(signal.SIGTERM, killsHandler)
 
 
 # Function for handling connections. This will be used to create threads
@@ -70,6 +71,13 @@ def clientThread(conn):
     global serverOn
     # global s
     global pids
+
+    def killHandler(_sign, _stack_frame):
+        conn.close()
+        exit()
+
+    signal.signal(signal.SIGTERM, killsHandler)
+
 
     pids.append(os.getpid())
 
