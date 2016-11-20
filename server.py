@@ -7,7 +7,7 @@ from thread import *
 from parse import *
 
 
-accept_timeout = 60.0
+accept_timeout = 1.0
 socket_timeout = 60.0
 
 
@@ -59,6 +59,7 @@ def clientThread(conn):
             data = conn.recv(4096)
         except:
             print "socket timeout"
+            continue
             break
 
         if not data:
@@ -103,7 +104,7 @@ while serverOn:
         except:
             print "accept timeout"
             # TODO remove break when debug finished
-            break
+            # break
             continue
 s.close()
 exit()
