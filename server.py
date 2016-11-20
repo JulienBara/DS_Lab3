@@ -158,8 +158,8 @@ while serverOn:
             # TODO remove break when debug finished
             # break
             pass
-# conn.close()
-conn.shutdown(socket.SHUT_RDWR)
+# s.close()
+s.shutdown(socket.SHUT_RDWR)
 exit()
 
 
