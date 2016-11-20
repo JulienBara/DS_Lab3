@@ -44,9 +44,18 @@ def leaving(conn, chatroom_id, join_id, client_name):
     sendingMessageToCo(conn, s)
 
     chatroom = findOrDefaultChatroomById(chatroom_id, chatrooms)
+
+    print "step 1"
+
     if chatroom is not None:
+
+        print "step 2"
+
         join = findOrDefaultJoinByChatroom(chatroom, joins)
         if join is not None:
+
+            print "step 3"
+
             join.chatroom.removeExistingJoinInChatroom(join)
             joins.remove(join)
 
