@@ -1,15 +1,18 @@
 import socket
 import sys
-import time
 
 from thread import *
 
 from parse import *
 
+from multiprocessing import Process
+
 
 accept_timeout = 0.001
 socket_timeout = 60.0
 
+global threads
+threads = []
 
 if len(sys.argv) > 3:
     host = str(sys.argv[1])
@@ -48,7 +51,7 @@ nbrCoClient = 0
 def clientThread(conn):
     global nbrCoClient
     global serverOn
-    global s
+    # global s
 
     conn.settimeout(socket_timeout)
 
@@ -68,8 +71,9 @@ def clientThread(conn):
 
         if data == "KILL_SERVICE\n":
             serverOn = False
-            s.close()
-            shutdown()
+            # s.close()
+            # shutdown()
+            killAllThreads()
             print "Shutting down server"
             break
 
@@ -99,7 +103,11 @@ while serverOn:
                 break
 
             # start new thread takes 1st argument as a function name to be run, second is the tuple of arguments to the function.
-            start_new_thread(clientThread, (conn,))
+            # start_new_thread(clientThread, (conn,))
+            p = Process(target=clientThread, args=(conn,))
+            p.start()
+            threads.append(p)
+
         except:
             print "accept timeout"
             # TODO remove break when debug finished
@@ -109,6 +117,10 @@ s.close()
 exit()
 
 
+def killAllThreads():
+    global threads
+    for thread in threads:
+        thread.terminate()
 
 
 

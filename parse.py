@@ -53,5 +53,5 @@ def parse(conn, data, host, port):
         error(conn, 1)
 
 
-def shutdown():
-    closeAllConns()
+# def shutdown():
+#     closeAllConns()
