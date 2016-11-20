@@ -17,6 +17,12 @@ class Chatroom:
                 return chatroom_join
         return None
 
+    def findOrDefaultJoinInChatroomByClientName(self, client_name):
+        for chatroom_join in self.joins:
+            if chatroom_join.client_name == client_name:
+                return chatroom_join
+        return None
+
     def removeIfExistsJoinInChatroom(self, to_remove_join):
         join = self.findOrDefaultJoinInChatroom(to_remove_join)
         if join is not None:
